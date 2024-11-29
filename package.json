@@ -1,0 +1,12 @@
+{
+  "name": "javascript-questions",
+  "version": "1.0.0",
+  "description": "Interview questions with solutions",
+  "main": "Javascript Questions.js",
+  "scripts": {
+    "start": "node test.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Danish Farman",
+  "license": "ISC"
+}
