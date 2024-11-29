@@ -112,7 +112,7 @@ let obj = {
         let dir = sortDirection.toLowerCase();
         if (dir === 'asc' || dir === 'ascending') {
             if (input.every((element) => typeof element === 'string')) {
-                if(input.every((e) => isNumberString(e))) {
+                if (input.every((e) => isNumberString(e))) {
                     result = sort(input, (a, b) => parseFloat(a) - parseFloat(b));
                 }
                 else {
@@ -125,7 +125,7 @@ let obj = {
         }
         if (dir === 'desc' || dir === 'descending') {
             if (input.every((element) => typeof element === 'string')) {
-                if(input.every((e) => isNumberString(e))) {
+                if (input.every((e) => isNumberString(e))) {
                     result = sort(input, (a, b) => parseFloat(b) - parseFloat(a));
                 }
                 else {
@@ -137,8 +137,79 @@ let obj = {
             }
         }
         return result;
-    }
+    },
 
+    flattenArray: function (input, flattenDepth) {
+        return input.flat(flattenDepth);
+    },
+
+    areStringsEqual: function (str1, str2, isCaseSensitive) {
+
+        let first_set = isCaseSensitive ? str1.split('').map(m => m.toLowerCase()) : str1.split(''),
+            second_set = isCaseSensitive ? str2.split('').map(m => m.toLowerCase()) : str2.split(''),
+            result = true;
+
+        first_set.sort();
+        second_set.sort();
+
+        for (var i = 0; i < Math.max(first_set.length, second_set.length); i++) {
+            if (first_set[i] !== second_set[i]) {
+                result = false;
+            }
+        }
+
+        return result;
+    },
+
+    countCharacterOccurrences: (input) => {
+        const obj = {};
+        for (const char of input) {
+            obj[char] = (obj[char] || 0) + 1;
+        }
+        return obj;
+    },
+
+    isPrime: function (input) {
+        let getPrimes = function (limit) {
+            let primes = [];
+            let sieve = Array(limit + 1).fill(true);
+            sieve[0] = sieve[1] = false; // 0 and 1 are not prime numbers
+            for (let i = 2; i <= Math.sqrt(limit); i++) {
+                if (sieve[i]) {
+                    for (let j = i * i; j <= limit; j += i) {
+                        sieve[j] = false; // Marking multiples of i as non-prime
+                    }
+                }
+            }
+            // Collecting all prime numbers
+            for (let i = 2; i <= limit; i++) {
+                if (sieve[i]) {
+                    primes.push(i);
+                }
+            }
+            return primes;
+        };
+
+        let primeNumbers = getPrimes(input);
+        console.log(primeNumbers);
+        return primeNumbers.find(f => f === input);
+    },
+
+    fibonacciNumbers: function (number) {
+        let n1 = 0, n2 = 1, nextTerm;
+        let results = [];
+        for (let i = 1; i <= number; i++) {
+            results.push(n1);
+            nextTerm = n1 + n2;
+            n1 = n2;
+            n2 = nextTerm;
+        }
+        return results;
+    },
+
+    reverseWords: function (input) {
+        //Write a Javascript function that reverses the order of words in a sentence without using the built-in reverse method.
+    }
 };
 
 module.exports = obj;
