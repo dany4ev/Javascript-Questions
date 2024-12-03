@@ -86,3 +86,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+/.idea/encodings.xml
+/Javascript Questions.code-workspace
+/.idea/indexLayout.xml
