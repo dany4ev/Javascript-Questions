@@ -1,4 +1,3 @@
-
 let obj = {
 
     findLongestSentence: function (input) {
@@ -40,23 +39,21 @@ let obj = {
     },
 
     factorial: function (input) {
-        let result = 1;
+        let result;
         let range = [];
         for (let i = input; i >= 1; i--) {
             range.push(i);
         }
         if (range.length > 0) {
             result = range.reduce((a, b) => a * b);
-        }
-        else {
+        } else {
             result = 1;
         }
         return result;
     },
 
     mergeSort: function (arr1, arr2) {
-        let result = [];
-        result = [...arr1, ...arr2]; // merge arrays
+        let result = [...arr1, ...arr2] ?? []; // merge arrays
         return result.sort((a, b) => a - b);
     },
 
@@ -75,8 +72,7 @@ let obj = {
 
     getUniqueArray: function (a) {
         let stringified = a.map(JSON.stringify).map(m => m.toString().toLowerCase());
-        let uniqueArray = [...new Set(stringified)].map(JSON.parse);
-        return uniqueArray;
+        return [...new Set(stringified)].map(JSON.parse);
     },
 
     maxInArray: function (input) {
@@ -92,8 +88,7 @@ let obj = {
         let flattened = input.flatMap((fm) => {
             if (typeof fm === "object") {
                 return fm.flat();
-            }
-            else {
+            } else {
                 return fm;
             }
         });
@@ -114,8 +109,7 @@ let obj = {
             if (input.every((element) => typeof element === 'string')) {
                 if (input.every((e) => isNumberString(e))) {
                     result = sort(input, (a, b) => parseFloat(a) - parseFloat(b));
-                }
-                else {
+                } else {
                     result = sort(input, (a, b) => a.toString().localeCompare(b));
                 }
             }
@@ -127,8 +121,7 @@ let obj = {
             if (input.every((element) => typeof element === 'string')) {
                 if (input.every((e) => isNumberString(e))) {
                     result = sort(input, (a, b) => parseFloat(b) - parseFloat(a));
-                }
-                else {
+                } else {
                     result = sort(input, (a, b) => b.toString().localeCompare(a));
                 }
             }
@@ -152,7 +145,7 @@ let obj = {
         first_set.sort();
         second_set.sort();
 
-        for (var i = 0; i < Math.max(first_set.length, second_set.length); i++) {
+        for (let i = 0; i < Math.max(first_set.length, second_set.length); i++) {
             if (first_set[i] !== second_set[i]) {
                 result = false;
             }
@@ -208,8 +201,15 @@ let obj = {
     },
 
     reverseWords: function (input) {
-        //Write a Javascript function that reverses the order of words in a sentence without using the built-in reverse method.
+        //Write a Javascript function that reverses the order of words in a sentence without 
+        // using the built-in reverse method.
+        let results = [];
+        let splitted = input.split(' ');
+        splitted.forEach((word) => {
+            results.push(this.reverseString(word));
+        });        
+        return results.join(' ');
     }
 };
 
-module.exports = obj;
+export default obj;

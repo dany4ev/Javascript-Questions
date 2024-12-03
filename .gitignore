@@ -89,3 +89,5 @@ typings/
 /.idea/encodings.xml
 /Javascript Questions.code-workspace
 /.idea/indexLayout.xml
+
+.idea/
